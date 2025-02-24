@@ -1,10 +1,5 @@
 
 services:
-  backend:
-    build: .
-    container_name: backend_testing
-    networks:
-      - test_intranet
   nginx:
     image: nginx:1.15-alpine
     restart: unless-stopped
@@ -27,6 +22,11 @@ services:
       - ./certbot/www:/var/www/certbot
     command: certonly --webroot -w /var/www/certbot --force-renewal --force-interactive --email vivekcharak004@gmail.com -d api-test.projectlive.me --agree-tos
     # entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  backend:
+    build: .
+    container_name: backend_testing
+    networks:
+      - test_intranet
 
 networks:
   test_intranet:
