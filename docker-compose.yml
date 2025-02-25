@@ -27,6 +27,10 @@ services:
     container_name: backend_testing
     networks:
       - test_intranet
+    # ports:
+    #   - 5500:5500
+    # volumes:
+    #   - ./check/one.txt:/app/check/one.txt
 
 networks:
   test_intranet:

@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
 
 const app = express();
 const PORT = 5500;
@@ -9,6 +10,8 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   try {
+    const val = fs.readFileSync("./check/one.txt", { encoding: "utf-8" });
+    console.log(val);
     res.status(200).json({ msg: "hello world!" });
   } catch (error) {
     res.status(500).json({ msg: error });
