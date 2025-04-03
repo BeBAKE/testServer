@@ -8,6 +8,14 @@ const PORT = 5500;
 app.use(cors());
 app.use(express.json());
 
+app.get("/health", (req, res) => {
+  try {
+    res.status(200).json({ message: "server is healthy" });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
 app.get("/", (req, res) => {
   try {
     const val = fs.readFileSync("./check/one.txt", { encoding: "utf-8" });
