@@ -20,7 +20,8 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --force-interactive --email vivekcharak004@gmail.com -d api-test.projectlive.me --agree-tos
+    command: certbot certonly --webroot -w /var/www/certbot --noninteractive --quiet --email vivekcharak004@gmail.com -d api-test.projectlive.me --agree-tos
+    # command: certonly --webroot -w /var/www/certbot --force-renewal --force-interactive --email vivekcharak004@gmail.com -d api-test.projectlive.me --agree-tos
     # entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   backend:
     build: .
